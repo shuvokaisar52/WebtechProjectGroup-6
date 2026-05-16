@@ -1,19 +1,18 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) { session_start(); }
+session_start();
 
-// HARDCODED EMPLOYER DATA FOR TESTING
 $_SESSION['user_id'] = 2;
 $_SESSION['role'] = 'employer';
-$_SESSION['name'] = 'Employer User';
+$_SESSION['name'] = 'Tech Solutions';
 
 include_once "../controllers/TrackingController.php";
 
-// Get jobs for the hardcoded employer
 $employer_id = $_SESSION['user_id'];
 $jobs = $model->getEmployerJobs($employer_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +21,14 @@ $jobs = $model->getEmployerJobs($employer_id);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Employer Dashboard</h1>
             <p>Welcome back, <?php echo $_SESSION['name']; ?> (Employer ID: <?php echo $employer_id; ?>)</p>
             <nav>
-                <a href="employer_tracking.php" style="font-weight:bold">Track Applications</a> | 
+                <a href="employer_tracking.php" style="font-weight:bold">Track Applications</a> |
                 <a href="admin_panel.php">Admin Panel</a> |
                 <a href="../controllers/Logout.php">Logout</a>
             </nav>
@@ -64,7 +64,8 @@ $jobs = $model->getEmployerJobs($employer_id);
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="6" style="text-align:center">Please select a job above to view applications</td>
+                            <td colspan="6" style="text-align:center">Please select a job above to view applications
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -79,6 +80,7 @@ $jobs = $model->getEmployerJobs($employer_id);
         </div>
     </div>
 
-    <script src="js/tracking.js"></script>
+    <script src="../controllers/js/tracking.js"></script>
 </body>
+
 </html>

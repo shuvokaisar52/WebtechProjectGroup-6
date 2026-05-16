@@ -1,10 +1,9 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) { session_start(); }
 
-// HARDCODED ADMIN DATA FOR TESTING
 $_SESSION['user_id'] = 1;
 $_SESSION['role'] = 'admin';
-$_SESSION['name'] = 'Admin User';
+$_SESSION['name'] = 'System Admin';
 
 include_once "../controllers/TrackingController.php";
 

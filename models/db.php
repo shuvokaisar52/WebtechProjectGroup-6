@@ -1,9 +1,11 @@
 <?php
-include_once __DIR__ . "/../config/db_config.php";
+include "../config/db_config.php";
 
-class db {
+class db
+{
 
-    function connection() {
+    function connection()
+    {
         $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if ($connection->connect_error) {
             die("Could not Connect Database: " . $connection->connect_error);
