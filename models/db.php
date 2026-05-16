@@ -1,5 +1,5 @@
 <?php
-include "../config/db_config.php";
+include_once __DIR__ . "/../config/db_config.php";
 
 class db {
 
