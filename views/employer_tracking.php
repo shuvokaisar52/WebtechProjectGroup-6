@@ -28,8 +28,6 @@ $jobs = $model->getEmployerJobs($employer_id);
             <h1>Employer Dashboard</h1>
             <p>Welcome back, <?php echo $_SESSION['name']; ?> (Employer ID: <?php echo $employer_id; ?>)</p>
             <nav>
-                <a href="employer_tracking.php" style="font-weight:bold">Track Applications</a> |
-                <a href="admin_panel.php">Admin Panel</a> |
                 <a href="../controllers/Logout.php">Logout</a>
             </nav>
         </header>

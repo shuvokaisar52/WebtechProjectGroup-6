@@ -1,5 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) { session_start(); }
+ session_start(); 
 
 $_SESSION['user_id'] = 1;
 $_SESSION['role'] = 'admin';
@@ -27,11 +27,6 @@ $summary = getAdminSummaryStats();
     <div class="container">
         <header>
             <h1>Admin Panel - Job Management</h1>
-            <nav>
-                <a href="employer_tracking.php">Employer Dashboard</a> | 
-                <a href="admin_panel.php" style="font-weight:bold">Admin Panel</a> |
-                <a href="../controllers/Logout.php">Logout</a>
-            </nav>
         </header>
 
         <section class="admin-summary">
@@ -58,10 +53,10 @@ $summary = getAdminSummaryStats();
 
         <div class="card">
             <h3>Filters</h3>
-            <form method="GET" class="filter-form" style="display: flex; gap: 15px; align-items: flex-end;">
+            <form id="admin-filter-form" class="filter-form" style="display: flex; gap: 15px; align-items: flex-end;" onsubmit="return false;">
                 <div class="form-group" style="flex: 1; margin-bottom: 0;">
                     <label>Category</label>
-                    <select name="category">
+                    <select id="admin-category-filter" name="category">
                         <option value="">All Categories</option>
                         <?php foreach ($categories as $cat): ?>
                             <option value="<?php echo $cat['id']; ?>" <?php echo $cat_filter == $cat['id'] ? 'selected' : ''; ?>>
@@ -72,14 +67,13 @@ $summary = getAdminSummaryStats();
                 </div>
                 <div class="form-group" style="flex: 1; margin-bottom: 0;">
                     <label>Status</label>
-                    <select name="status">
+                    <select id="admin-status-filter" name="status">
                         <option value="">All Statuses</option>
                         <option value="active" <?php echo $status_filter == 'active' ? 'selected' : ''; ?>>Active</option>
                         <option value="closed" <?php echo $status_filter == 'closed' ? 'selected' : ''; ?>>Closed</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-secondary">Apply Filters</button>
-                <a href="admin_panel.php" class="btn" style="text-decoration:none; background:#eee; color:#333;">Clear</a>
+                <button type="button" id="admin-clear-filter" class="btn" style="text-decoration:none; background:#eee; color:#333;">Clear</button>
             </form>
         </div>
 
@@ -127,5 +121,6 @@ $summary = getAdminSummaryStats();
             </div>
         </div>
     </div>
+    <script src="../controllers/js/admin_tracking.js"></script>
 </body>
 </html>

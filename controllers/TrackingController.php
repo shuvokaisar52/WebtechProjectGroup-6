@@ -63,6 +63,17 @@ if (isset($_GET['action'])) {
         }
         exit();
     }
+
+    if ($action === 'get_admin_jobs') {
+        $cat_id = $_GET['category'] ?? null;
+        if ($cat_id === '') $cat_id = null;
+        $status = $_GET['status'] ?? null;
+        if ($status === '') $status = null;
+        
+        $jobs = $model->getAllJobs($cat_id, $status);
+        echo json_encode($jobs);
+        exit();
+    }
 }
 
 function getCategoriesForFilter()

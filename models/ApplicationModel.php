@@ -21,7 +21,7 @@ class ApplicationModel extends db
                 return false;
             }
             $result = $stmt->get_result();
-            
+
             if ($result === false) {
                 $status = $stmt->affected_rows >= 0;
                 $stmt->close();
@@ -70,14 +70,14 @@ class ApplicationModel extends db
     {
         $sql = "SELECT status, COUNT(*) as count FROM applications WHERE job_id = ? GROUP BY status";
         $rows = $this->execute($sql, [$job_id], "i");
-        
+
         $stats = [
             'Submitted' => 0,
             'Reviewed' => 0,
             'Shortlisted' => 0,
             'Rejected' => 0
         ];
-        
+
         foreach ($rows as $row) {
             $stats[$row['status']] = $row['count'];
         }
@@ -117,7 +117,7 @@ class ApplicationModel extends db
     public function getAdminSummary()
     {
         $summary = [];
-        
+
         $totalJobsRow = $this->execute("SELECT COUNT(*) as total FROM jobs");
         $summary['total_jobs'] = $totalJobsRow[0]['total'] ?? 0;
 
@@ -137,25 +137,6 @@ class ApplicationModel extends db
     public function getCategories()
     {
         return $this->execute("SELECT * FROM categories");
-    }
-
-    public function getSavedJobs($user_id)
-    {
-        $sql = "SELECT j.*, c.name as category_name 
-                FROM saved_jobs sj 
-                JOIN jobs j ON sj.job_id = j.id 
-                JOIN categories c ON j.category_id = c.id 
-                WHERE sj.user_id = ?";
-        return $this->execute($sql, [$user_id], "i");
-    }
-
-    public function getAppliedJobs($user_id)
-    {
-        $sql = "SELECT j.title, j.location, a.status, a.created_at as applied_date 
-                FROM applications a 
-                JOIN jobs j ON a.job_id = j.id 
-                WHERE a.seeker_id = ?";
-        return $this->execute($sql, [$user_id], "i");
     }
 }
 ?>
