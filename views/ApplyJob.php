@@ -15,7 +15,7 @@ $job_id = $_GET["job_id"];
 			width: 300px;
 			height: 100px;
 			padding: 8px;
-			border: 1px solid #ccc;
+			border: 1px solid #ddd;
 			border-radius: 5px;
 			resize: none;
 		}
@@ -38,19 +38,16 @@ $job_id = $_GET["job_id"];
 
     <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
 
-    <textarea name="cover_letter" placeholder="Write cover letter"></textarea><br><br>
+    <textarea name="cover_letter" placeholder="Write cover letter..."></textarea><br><br>
 
-    <label>
-        <input type="radio" name="resume_option" value="profile">
-        Use the profile resume
-    </label><br>
+    <label><input type="radio" name="resume_option" value="profile">Use the profile resume</label>
+	<br>
 
-    <label>
-        <input type="radio" name="resume_option" value="upload">
-        Upload a new resume
-    </label><br><br>
+    <label><input type="radio" name="resume_option" value="upload">Upload a new resume</label>
+	<br><br>
 
     <input type="file" name="resume"><br><br>
+	
 
     <button type="submit">Submit Application</button>
 
