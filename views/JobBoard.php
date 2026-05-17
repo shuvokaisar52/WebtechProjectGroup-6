@@ -3,13 +3,12 @@ session_start();
 
 $_SESSION["user_id"]="2";
 
-$username = $_SESSION["username"] ?? "";
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Job Board</title>
+    <title>Job Board Page</title>
 	<style>
 		a{
 			text-decoration: none;
@@ -24,7 +23,7 @@ $username = $_SESSION["username"] ?? "";
 <script src="../controllers/js/SearchJobs.js"></script>
     <div style="margin-top:20px;">
         <a href="../views/MyApplication.php">My Applications</a>
-        <a href="../views/SavedJobList.php">Bookmarked Job</a>
+        <a href="../views/SavedJobList.php">Saved Jobs</a>
 		<a href="../controllers/LogoutController.php">Logout</a>
     </div>
 
