@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$isComplete = false;
+$role = $_SESSION['role'] ?? 'jobseeker';
+
+$profile = [];
+$errors = [];
+$user = [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
