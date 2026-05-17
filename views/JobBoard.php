@@ -21,6 +21,7 @@ $_SESSION["user_id"]="2";
 </head>
 <body onload="SearchJobs()">
 <script src="../controllers/js/SearchJobs.js"></script>
+<script src="../controllers/js/ToggleJob.js"></script>
     <div style="margin-top:20px;">
         <a href="../views/MyApplication.php">My Applications</a>
         <a href="../views/SavedJobList.php">Saved Jobs</a>

@@ -19,6 +19,7 @@ $result = $database->getSavedJobs($connection,$user_id);
 </head>
 <body>
 <script src="../controllers/js/SearchJobs.js"></script>
+<script src="../controllers/js/ToggleJob.js"></script>
 <h2 style="text-align:center;">Saved Jobs</h2>
 
 <?php
