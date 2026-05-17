@@ -12,18 +12,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $cover_letter = $_POST["cover_letter"];
     $option = $_POST["resume_option"] ?? "";
 	
+	$database = new db();
+	$connection = $database->connection();
+
+	$check = $database->checkAlreadyApplied($connection, $job_id, $user_id);
+
+	if($check->num_rows > 0)
+	{
+		echo "Already Applied.";
+	}
+	
 	if(!empty($cover_letter) && $option!="")
 		{
 			$_SESSION["option"] = $option;
-			$database = new db();
-			$connection = $database->connection();
-
-			$check = $database->checkAlreadyApplied($connection, $job_id, $user_id);
-
-			if($check->num_rows > 0)
-			{
-				echo "Already Applied";
-			}
 
 			if($option == "profile")
 			{
