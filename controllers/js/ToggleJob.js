@@ -11,7 +11,9 @@ function saveJob(btn, job_id){
             } else {
                 alert("Can't bookmark the job.");
             }
-        }
+        }else{
+			alert("Error.");
+		}
     };
 
     xhttp.open("POST", "../controllers/SaveJobController.php", true);
@@ -24,7 +26,9 @@ function removeSaved(job_id){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             location.reload();
-        }
+        }else{
+			alert("Error.");
+		}
     };
 
     xhttp.open("POST", "../controllers/SaveJobController.php", true);
