@@ -1,10 +1,10 @@
 <?php
-include "../Model/db.php";
+include "../models/db.php";
 session_start();
 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+if((!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true) && !isset($_SESSION["user_id"]))
     {
-        Header("Location:../View/Login.php");
+        Header("Location:../views/Login.php");
         exit();
     }
 
@@ -20,11 +20,11 @@ $connection = $database->connection();
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $id = $_POST["id"] ?? "";
-        $employer_id = $_SESSION["id"];
+        $employer_id = $_SESSION["user_id"] ?? ($_SESSION["id"] ?? "");
 
         if(empty($id))
             {
-                Header("Location:../View/EmployerDashboard.php?error=Job+Id+Missing");
+                Header("Location:../views/EmployerDashboard.php?error=Job+Id+Missing");
                 exit();
             }
 
@@ -32,12 +32,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if($result)
             {
-                Header("Location:../View/EmployerDashboard.php?message=Job+Deleted");
+                Header("Location:../views/EmployerDashboard.php?message=Job+Deleted");
                 exit();
             }
         else
             {
-                Header("Location:../View/EmployerDashboard.php?error=Job+Not+Deleted");
+                Header("Location:../views/EmployerDashboard.php?error=Job+Not+Deleted");
                 exit();
             }
     }

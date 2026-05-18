@@ -1,10 +1,10 @@
 <?php
-include "../Model/db.php";
+include "../models/db.php";
 session_start();
 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+if((!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true) && !isset($_SESSION["user_id"]))
     {
-        Header("Location:../View/Login.php");
+        Header("Location:../views/Login.php");
         exit();
     }
 
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if(empty($id))
             {
-                Header("Location:../View/CategoryDashboard.php?error=Category+Id+Missing");
+                Header("Location:../views/CategoryDashboard.php?error=Category+Id+Missing");
                 exit();
             }
 
@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if($check->num_rows>0)
             {
-                Header("Location:../View/CategoryDashboard.php?error=Cannot+Delete+Category+Because+Jobs+Use+It");
+                Header("Location:../views/CategoryDashboard.php?error=Cannot+Delete+Category+Because+Jobs+Use+It");
                 exit();
             }
         else
@@ -40,12 +40,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
                 if($result)
                     {
-                        Header("Location:../View/CategoryDashboard.php?message=Category+Deleted");
+                        Header("Location:../views/CategoryDashboard.php?message=Category+Deleted");
                         exit();
                     }
                 else
                     {
-                        Header("Location:../View/CategoryDashboard.php?error=Category+Not+Deleted");
+                        Header("Location:../views/CategoryDashboard.php?error=Category+Not+Deleted");
                         exit();
                     }
             }

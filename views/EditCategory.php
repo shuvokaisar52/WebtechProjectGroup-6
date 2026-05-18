@@ -1,5 +1,5 @@
 <?php
-include "../Controller/EditCategoryController.php";
+include "../controllers/EditCategoryController.php";
 echo "<h1>Edit Category Page</h1><br>";
 $error = $_GET["error"] ?? "";
 ?>
@@ -7,7 +7,7 @@ $error = $_GET["error"] ?? "";
 <html>
     <body>
         <?php echo $error; ?>
-        <form method='post' action='../Controller/EditCategoryController.php'>
+        <form method='post' action='../controllers/EditCategoryController.php'>
             <table>
                 <tr>
                     <td>Category Name:</td>

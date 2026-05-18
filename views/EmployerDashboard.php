@@ -1,18 +1,19 @@
 <?php
-include "../Controller/JobDashboardController.php";
+include "../controllers/JobDashboardController.php";
 echo "<h1>Employer Job Dashboard</h1><br>";
 $message = $_GET["message"] ?? "";
 $error = $_GET["error"] ?? "";
+$username = $_SESSION["username"] ?? ($_SESSION["name"] ?? "");
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <script src='../Controller/JS/ToggleStatus.js'></script>
+        <script src='../controllers/js/ToggleStatus2.js'></script>
     </head>
     <body>
-        <?php echo "Hello ".$_SESSION["username"]; ?>
+        <?php echo "Hello ".$username; ?>
         <br>
-        <a href="../Controller/Logout.php">Logout</a>
+        <a href="../controllers/Logout.php">Logout</a>
         <br>
         <?php echo $message; ?>
         <?php echo $error; ?>
@@ -42,11 +43,11 @@ $error = $_GET["error"] ?? "";
                         <font id='s<?php echo $row['id']; ?>' color='red'><?php echo $row['status']; ?></font>
                     <?php } ?>
                     <br>
-                    <input type='button' value='Toggle' onclick='toggle(<?php echo $row['id']; ?>)'>
+                    <input type='button' value='Toggle' onclick='ToggleStatus2(<?php echo $row['id']; ?>)'>
                 </td>
                 <td><a href='EditJob.php?id=<?php echo $row['id']; ?>'>Edit</a></td>
                 <td>
-                    <form method='post' action='../Controller/DeleteJobController.php'>
+                    <form method='post' action='../controllers/DeleteJobController.php'>
                         <input type='hidden' name='id' value='<?php echo $row['id']; ?>'>
                         <input type='submit' value='Delete'>
                     </form>

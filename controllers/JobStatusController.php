@@ -1,10 +1,10 @@
 <?php
-include "../Model/db.php";
+include "../models/db.php";
 session_start();
 
 header('Content-Type: application/json');
 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+if((!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true) && !isset($_SESSION["user_id"]))
     {
         echo json_encode(array("success"=>false,"message"=>"Please Login"));
         exit();
@@ -17,7 +17,7 @@ if(($_SESSION["role"] ?? "")!="employer")
     }
 
 $id = $_POST["id"] ?? "";
-$employer_id = $_SESSION["id"];
+$employer_id = $_SESSION["user_id"] ?? ($_SESSION["id"] ?? "");
 
 if(empty($id))
     {

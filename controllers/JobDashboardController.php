@@ -1,10 +1,10 @@
 <?php
-include "../Model/db.php";
+include "../models/db.php";
 session_start();
 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+if((!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true) && !isset($_SESSION["user_id"]))
     {
-        Header("Location:../View/Login.php");
+        Header("Location:../views/Login.php");
         exit();
     }
 
@@ -14,7 +14,7 @@ if(($_SESSION["role"] ?? "")!="employer")
         exit();
     }
 
-$employer_id = $_SESSION["id"];
+$employer_id = $_SESSION["user_id"] ?? ($_SESSION["id"] ?? "");
 
 $database = new db();
 $connection = $database->connection();
