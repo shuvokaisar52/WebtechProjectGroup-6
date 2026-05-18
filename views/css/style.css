@@ -1,3 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.task-card {
+    display: block;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    background-color: #007bff;
+    color: #fff;
+}
+
+.task-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.task-card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.task-card:hover p {
+    color: #e0e0e0;
+}
+
 a{
     text-decoration: none;
     padding: 6px 18px;
