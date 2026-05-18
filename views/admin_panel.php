@@ -28,7 +28,8 @@ $summary = getAdminSummaryStats();
     <div class="container">
         <header style="display: flex; justify-content: space-between; align-items: center;">
             <h1>Admin Panel - Job Management</h1>
-            <nav>
+            <nav style="display: flex; gap: 10px;">
+                <a href="CategoryDashboard.php" class="btn" style="padding: 5px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Category Management</a>
                 <a href="../controllers/LogoutController.php" class="btn btn-danger" style="padding: 5px 10px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px;">Logout</a>
             </nav>
         </header>

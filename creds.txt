@@ -1,0 +1,12 @@
+Admin Account:
+
+Email: admin@jobportal.local
+Employer Accounts:
+
+Email: employer@tech.local (Tech Solutions Inc)
+Email: employer2@creative.local (Creative Studio LLC)
+
+Job Seeker Accounts:
+
+Email: seeker@user.local (John Doe)
+Email: seeker2@user.local (Jane Smith)
