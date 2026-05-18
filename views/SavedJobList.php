@@ -20,7 +20,7 @@ $result = $database->getSavedJobs($connection,$user_id);
 <html>
 <head>
     <title>Dashboard</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/seeker.css">
 </head>
 <body>
 <script src="../controllers/js/SearchJobs.js"></script>

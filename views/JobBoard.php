@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 <html>
 <head>
     <title>Job Board Page</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/seeker.css">
 </head>
 <body onload="SearchJobs()">
 <script src="../controllers/js/SearchJobs.js"></script>

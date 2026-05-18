@@ -17,6 +17,13 @@ $job = $result->fetch_assoc();
 
 $check = $database->checkAlreadyApplied($connection, $job_id, $user_id);
 ?>
+	<link rel="stylesheet" href="css/seeker.css">
+    <div style="margin-top:20px;">
+        <a href="../controllers/ProfileController.php">Profile</a>
+        <a href="../views/MyApplication.php">My Applications</a>
+        <a href="../views/SavedJobList.php">Saved Jobs</a>
+		<a href="../controllers/LogoutController.php">Logout</a>
+    </div>
 <h2 style="text-align:center;">Job Details Page</h2>
 
 <div style="border:1px solid black; margin:10px; padding:10px;">

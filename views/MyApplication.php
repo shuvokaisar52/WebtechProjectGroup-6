@@ -12,7 +12,7 @@ if (!$user_id) {
 <html>
 <head>
     <title>My Applications Page</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/seeker.css">
 </head>
 <script src="../controllers/js/FetchApplications.js"></script>
 <body >
