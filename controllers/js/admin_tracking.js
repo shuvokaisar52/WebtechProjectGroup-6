@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     html += '<td>';
 
                     if (job.status === 'active') {
-                        html += '<form action="../controllers/TrackingController.php?action=delete_job" method="POST" onsubmit="return confirm(\'Close this job listing?\');">';
+                        html += '<form class="close-job-form" action="../controllers/TrackingController.php?action=delete_job" method="POST">';
                         html += '<input type="hidden" name="job_id" value="' + job.id + '">';
                         html += '<button type="submit" class="btn btn-danger">Close Job</button>';
                         html += '</form>';
@@ -61,6 +61,33 @@ document.addEventListener('DOMContentLoaded', function () {
             loadFilteredJobs();
         });
     }
+
+    document.addEventListener('submit', function (e) {
+        if (e.target && e.target.nodeName === 'FORM' && e.target.classList.contains('close-job-form')) {
+            e.preventDefault();
+            if (confirm('Close this job listing?')) {
+                var jobId = e.target.querySelector('input[name="job_id"]').value;
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../controllers/TrackingController.php?action=delete_job', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var res = JSON.parse(xhr.responseText);
+                            if (res.success) {
+                                loadFilteredJobs();
+                            } else {
+                                alert('Error closing job');
+                            }
+                        } else {
+                            alert('An error occurred.');
+                        }
+                    }
+                };
+                xhr.send('job_id=' + encodeURIComponent(jobId));
+            }
+        }
+    });
 
     function escapeHtml(unsafe) {
         if (!unsafe) return '';

@@ -103,7 +103,7 @@ $summary = getAdminSummaryStats();
                                 </td>
                                 <td>
                                     <?php if ($job['status'] === 'active'): ?>
-                                        <form action="../controllers/TrackingController.php?action=delete_job" method="POST" onsubmit="return confirm('Close this job listing?');">
+                                        <form class="close-job-form" action="../controllers/TrackingController.php?action=delete_job" method="POST">
                                             <input type="hidden" name="job_id" value="<?php echo $job['id']; ?>">
                                             <button type="submit" class="btn btn-danger">Close Job</button>
                                         </form>
@@ -121,6 +121,6 @@ $summary = getAdminSummaryStats();
             </div>
         </div>
     </div>
-    <script src="../controllers/js/admin_tracking.js"></script>
+    <script src="../controllers/js/admin_tracking.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

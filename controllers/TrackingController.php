@@ -56,11 +56,7 @@ if (isset($_GET['action'])) {
     if ($action === 'delete_job') {
         $job_id = $_POST['job_id'] ?? 0;
         $success = $model->softDeleteJob($job_id);
-        if ($success) {
-            header("Location: ../views/admin_panel.php?success=Job closed");
-        } else {
-            header("Location: ../views/admin_panel.php?error=Delete failed");
-        }
+        echo json_encode(['success' => $success]);
         exit();
     }
 
