@@ -1,5 +1,5 @@
 <?php
-include "../Controller/JobController.php";
+include "../controllers/JobController.php";
 echo "<h1>Add Job Page</h1><br>";
 $error = $_GET["error"] ?? "";
 $types = array("Full-time", "Part-time", "Remote");
@@ -8,7 +8,7 @@ $types = array("Full-time", "Part-time", "Remote");
 <html>
     <body>
         <?php echo $error; ?>
-        <form method='post' action='../Controller/JobController.php'>
+        <form method='post' action='../controllers/JobController.php'>
             <table>
                 <tr>
                     <td>Title:</td>

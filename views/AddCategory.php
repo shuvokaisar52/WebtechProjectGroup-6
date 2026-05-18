@@ -1,5 +1,5 @@
 <?php
-include "../Controller/CategoryController.php";
+include "../controllers/CategoryController.php";
 echo "<h1>Add Category Page</h1><br>";
 $error = $_GET["error"] ?? "";
 ?>
@@ -7,7 +7,7 @@ $error = $_GET["error"] ?? "";
 <html>
     <body>
         <?php echo $error; ?>
-        <form method='post' action='../Controller/CategoryController.php'>
+        <form method='post' action='../controllers/CategoryController.php'>
             <table>
                 <tr>
                     <td>Category Name:</td>
@@ -15,7 +15,7 @@ $error = $_GET["error"] ?? "";
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type='submit' value='Add'></td>
+                    <td><input type='submit' value='Add Category'></td>
                 </tr>
             </table>
         </form>

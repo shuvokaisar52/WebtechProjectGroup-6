@@ -1,10 +1,10 @@
 <?php
-include "../Model/db.php";
+include "../models/db.php";
 session_start();
 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+if((!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true) && !isset($_SESSION["user_id"]))
     {
-        Header("Location:../View/Login.php");
+        Header("Location:../views/Login.php");
         exit();
     }
 
@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if(empty($id) || empty($name))
             {
-                Header("Location:../View/CategoryDashboard.php?error=All+Fields+Required");
+                Header("Location:../views/CategoryDashboard.php?error=All+Fields+Required");
                 exit();
             }
         else
@@ -36,12 +36,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
                 if($result)
                     {
-                        Header("Location:../View/CategoryDashboard.php?message=Category+Updated");
+                        Header("Location:../views/CategoryDashboard.php?message=Category+Updated");
                         exit();
                     }
                 else
                     {
-                        Header("Location:../View/EditCategory.php?id=$id&error=Category+Not+Updated");
+                        Header("Location:../views/EditCategory.php?id=$id&error=Category+Not+Updated");
                         exit();
                     }
             }

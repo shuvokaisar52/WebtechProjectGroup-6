@@ -1,10 +1,10 @@
 <?php
-include "../Model/db.php";
+include "../models/db.php";
 session_start();
 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+if((!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true) && !isset($_SESSION["user_id"]))
     {
-        Header("Location:../View/Login.php");
+        Header("Location:../views/Login.php");
         exit();
     }
 
@@ -16,7 +16,7 @@ if(($_SESSION["role"] ?? "")!="employer")
 
 $database = new db();
 $connection = $database->connection();
-$employer_id = $_SESSION["id"];
+$employer_id = $_SESSION["user_id"] ?? ($_SESSION["id"] ?? "");
 
 $id = $_GET["id"] ?? ($_POST["id"] ?? "");
 $title = "";
@@ -45,12 +45,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 if($action=="edit")
                     {
-                        Header("Location:../View/EditJob.php?id=$id&error=All+Fields+Required");
+                        Header("Location:../views/EditJob.php?id=$id&error=All+Fields+Required");
                         exit();
                     }
                 else
                     {
-                        Header("Location:../View/AddJob.php?error=All+Fields+Required");
+                        Header("Location:../views/AddJob.php?error=All+Fields+Required");
                         exit();
                     }
             }
@@ -58,12 +58,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 if($action=="edit")
                     {
-                        Header("Location:../View/EditJob.php?id=$id&error=Invalid+Job+Type");
+                        Header("Location:../views/EditJob.php?id=$id&error=Invalid+Job+Type");
                         exit();
                     }
                 else
                     {
-                        Header("Location:../View/AddJob.php?error=Invalid+Job+Type");
+                        Header("Location:../views/AddJob.php?error=Invalid+Job+Type");
                         exit();
                     }
             }
@@ -71,12 +71,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 if($action=="edit")
                     {
-                        Header("Location:../View/EditJob.php?id=$id&error=Invalid+Deadline");
+                        Header("Location:../views/EditJob.php?id=$id&error=Invalid+Deadline");
                         exit();
                     }
                 else
                     {
-                        Header("Location:../View/AddJob.php?error=Invalid+Deadline");
+                        Header("Location:../views/AddJob.php?error=Invalid+Deadline");
                         exit();
                     }
             }
@@ -88,12 +88,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                     {
                         if($action=="edit")
                             {
-                                Header("Location:../View/EditJob.php?id=$id&error=Invalid+Category");
+                                Header("Location:../views/EditJob.php?id=$id&error=Invalid+Category");
                                 exit();
                             }
                         else
                             {
-                                Header("Location:../View/AddJob.php?error=Invalid+Category");
+                                Header("Location:../views/AddJob.php?error=Invalid+Category");
                                 exit();
                             }
                     }
@@ -104,12 +104,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
                         if($result)
                             {
-                                Header("Location:../View/EmployerDashboard.php?message=Job+Added+Successfully");
+                                Header("Location:../views/EmployerDashboard.php?message=Job+Added+Successfully");
                                 exit();
                             }
                         else
                             {
-                                Header("Location:../View/AddJob.php?error=Job+Not+Added");
+                                Header("Location:../views/AddJob.php?error=Job+Not+Added");
                                 exit();
                             }
                     }
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
                         if($jobCheck->num_rows!=1)
                             {
-                                Header("Location:../View/EmployerDashboard.php?error=You+Can+Only+Edit+Your+Own+Job");
+                                Header("Location:../views/EmployerDashboard.php?error=You+Can+Only+Edit+Your+Own+Job");
                                 exit();
                             }
 
@@ -127,14 +127,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
                         if($result)
                             {
-                                Header("Location:../View/EmployerDashboard.php?message=Job+Updated");
+                                Header("Location:../views/EmployerDashboard.php?message=Job+Updated");
                                 exit();
                             }
                         else
                             {
-                                Header("Location:../View/EditJob.php?id=$id&error=Job+Not+Updated");
+                                Header("Location:../views/EditJob.php?id=$id&error=Job+Not+Updated");
                                 exit();
                             }
+                    }
+                else
+                    {
+                        Header("Location:../views/EmployerDashboard.php?error=Invalid+Action");
+                        exit();
                     }
             }
     }
