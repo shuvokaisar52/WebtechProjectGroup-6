@@ -2,7 +2,11 @@
 session_start();
 include "../models/db.php";
 
-$user_id = $_SESSION["user_id"];
+$user_id = $_SESSION["user_id"] ?? null;
+if (!$user_id) {
+    header("Location: ../index.php");
+    exit;
+}
 
 
 $database = new db();
@@ -16,10 +20,16 @@ $result = $database->getSavedJobs($connection,$user_id);
 <html>
 <head>
     <title>Dashboard</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <script src="../controllers/js/SearchJobs.js"></script>
 <script src="../controllers/js/ToggleJob.js"></script>
+	<div style="margin-top:20px;">
+        <a href="../views/MyApplication.php">My Applications</a>
+        <a href="../views/SavedJobList.php">Saved Jobs</a>
+		<a href="../controllers/LogoutController.php">Logout</a>
+    </div>
 <h2 style="text-align:center;">Saved Jobs</h2>
 
 <?php

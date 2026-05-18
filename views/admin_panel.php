@@ -1,9 +1,10 @@
 <?php
  session_start(); 
 
-$_SESSION['user_id'] = 1;
-$_SESSION['role'] = 'admin';
-$_SESSION['name'] = 'System Admin';
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../index.php");
+    exit;
+}
 
 include_once "../controllers/TrackingController.php";
 
@@ -25,8 +26,11 @@ $summary = getAdminSummaryStats();
 </head>
 <body>
     <div class="container">
-        <header>
+        <header style="display: flex; justify-content: space-between; align-items: center;">
             <h1>Admin Panel - Job Management</h1>
+            <nav>
+                <a href="../controllers/LogoutController.php" class="btn btn-danger" style="padding: 5px 10px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px;">Logout</a>
+            </nav>
         </header>
 
         <section class="admin-summary">

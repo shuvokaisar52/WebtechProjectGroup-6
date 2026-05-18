@@ -31,8 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['role']    = $user['role'];
 
             // Role-based redirect
-           header('Location: ../views/profile.php');
-
+            if ($user['role'] === 'employer') {
+                header('Location: ../views/EmployerDashboard.php');
+            } elseif ($user['role'] === 'seeker' || $user['role'] === 'job seeker') {
+                header('Location: ../views/JobBoard.php');
+            } elseif ($user['role'] === 'admin') {
+                header('Location: ../views/admin_panel.php');
+            } else {
+                header('Location: ../views/Profile.php');
+            }
             exit;
         }
     }

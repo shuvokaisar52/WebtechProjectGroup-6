@@ -1,28 +1,23 @@
 <?php
 session_start();
 
-$_SESSION["user_id"]="2";
-
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Job Board Page</title>
-	<style>
-		a{
-			text-decoration: none;
-			padding: 6px 18px;
-			border-radius: 5px;
-			border: 1px solid black;
-			font-size: 14px;
-		}
-	</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="SearchJobs()">
 <script src="../controllers/js/SearchJobs.js"></script>
 <script src="../controllers/js/ToggleJob.js"></script>
     <div style="margin-top:20px;">
+        <a href="../controllers/ProfileController.php">Profile</a>
         <a href="../views/MyApplication.php">My Applications</a>
         <a href="../views/SavedJobList.php">Saved Jobs</a>
 		<a href="../controllers/LogoutController.php">Logout</a>

@@ -2,7 +2,11 @@
 session_start();
 
 $isComplete = false;
-$role = $_SESSION['role'] ?? 'jobseeker';
+$role = $_SESSION['role'] ?? null;
+if (!$role) {
+    header("Location: ../index.php");
+    exit;
+}
 
 $profile = [];
 $errors = [];

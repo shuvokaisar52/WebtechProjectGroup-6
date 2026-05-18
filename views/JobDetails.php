@@ -2,8 +2,12 @@
 session_start();
 include "../models/db.php";
 
-$user_id = $_SESSION["user_id"];
-$job_id = $_GET["id"];
+$user_id = $_SESSION["user_id"] ?? null;
+if (!$user_id) {
+    header("Location: ../index.php");
+    exit;
+}
+$job_id = $_GET["id"] ?? 0;
 
 $database = new db();
 $connection = $database->connection();

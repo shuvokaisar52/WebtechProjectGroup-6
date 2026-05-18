@@ -5,11 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once __DIR__ . "/../models/ApplicationModel.php";
 
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['user_id'] = 2;
-    $_SESSION['role'] = 'employer';
-    $_SESSION['name'] = 'Tech Solutions';
-}
 
 $model = new ApplicationModel();
 

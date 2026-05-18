@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-$_SESSION['user_id'] = 2;
-$_SESSION['role'] = 'employer';
-$_SESSION['name'] = 'Tech Solutions';
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit;
+}
 
 include_once "../controllers/TrackingController.php";
 
@@ -28,7 +29,9 @@ $jobs = $model->getEmployerJobs($employer_id);
             <h1>Employer Dashboard</h1>
             <p>Welcome back, <?php echo $_SESSION['name']; ?> (Employer ID: <?php echo $employer_id; ?>)</p>
             <nav>
-                <a href="../controllers/Logout.php">Logout</a>
+                <a href="EmployerDashboard.php" class="btn" style="padding: 5px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">Dashboard</a>
+                <a href="../controllers/ProfileController.php" class="btn" style="padding: 5px 10px; background: #6c757d; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">Profile</a>
+                <a href="../controllers/LogoutController.php" class="btn btn-danger" style="padding: 5px 10px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px;">Logout</a>
             </nav>
         </header>
 

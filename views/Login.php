@@ -47,8 +47,11 @@ input.is-error { border-color:var(--danger); }
 </head>
 <body>
 <nav>
-  <a class="logo" href="#">Job<span>Portal</span></a>
-  <a href="Registration.php">Sign up</a>
+  <a class="logo" href="../index.php">Job<span>Portal</span></a>
+  <div>
+    <a href="../index.php">Home</a>
+    <a href="Registration.php">Sign up</a>
+  </div>
 </nav>
 
 <div class="wrap">

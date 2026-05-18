@@ -13,7 +13,9 @@ $username = $_SESSION["username"] ?? ($_SESSION["name"] ?? "");
     <body>
         <?php echo "Hello ".$username; ?>
         <br>
-        <a href="../controllers/Logout.php">Logout</a>
+        <a href="employer_tracking.php">Application Tracking</a> |
+        <a href="../controllers/ProfileController.php">Profile</a> |
+        <a href="../controllers/LogoutController.php">Logout</a>
         <br>
         <?php echo $message; ?>
         <?php echo $error; ?>
