@@ -97,5 +97,146 @@ class db
 		$result = $connection->query($sql);
 		return $result;
     }
+
+	function AddCategory($connection, $tablename, $name)
+{
+    $sql= "INSERT INTO ".$tablename."(name) VALUES (?)";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("s",$name);
+    $result = $statement->execute();
+    return $result;
+}
+
+function ShowCategory($connection, $tablename)
+{
+    $sql = "SELECT * FROM ".$tablename." ORDER BY id DESC";
+    $statement=$connection->prepare($sql);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function CheckCategory($connection, $tablename, $name)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE name=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("s",$name);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function CategoryById($connection, $tablename, $id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function UpdateCategory($connection, $tablename, $id, $name)
+{
+    $sql = "UPDATE ".$tablename." SET name=? WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("si",$name,$id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function CheckCategoryJob($connection, $tablename, $category_id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE category_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$category_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function DeleteCategory($connection, $tablename, $id)
+{
+    $sql = "DELETE FROM ".$tablename." WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function AddJob($connection, $tablename, $employer_id, $category_id, $title, $description, $requirements, $salary_range, $location, $job_type, $deadline)
+{
+    $status="active";
+
+    $sql= "INSERT INTO ".$tablename."(employer_id, category_id, title, description, requirements, salary_range, location, job_type, deadline, status, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,NOW())";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("iissssssss",$employer_id,$category_id,$title,$description,$requirements,$salary_range,$location,$job_type,$deadline,$status);
+    $result = $statement->execute();
+    return $result;
+}
+
+function ShowEmployerJob($connection, $employer_id)
+{
+    $sql = "SELECT jobs.id, jobs.title, categories.name AS category_name, jobs.deadline, jobs.status, COUNT(applications.id) AS total_application
+    FROM jobs
+    LEFT JOIN categories ON jobs.category_id=categories.id
+    LEFT JOIN applications ON jobs.id=applications.job_id
+    WHERE jobs.employer_id=?
+    GROUP BY jobs.id, jobs.title, categories.name, jobs.deadline, jobs.status, jobs.created_at
+    ORDER BY jobs.created_at DESC";
+
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$employer_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function JobById($connection, $tablename, $id, $employer_id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE id=? AND employer_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("ii",$id,$employer_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function UpdateJob($connection, $tablename, $id, $employer_id, $category_id, $title, $description, $requirements, $salary_range, $location, $job_type, $deadline)
+{
+    $sql = "UPDATE ".$tablename." SET category_id=?, title=?, description=?, requirements=?, salary_range=?, location=?, job_type=?, deadline=? WHERE id=? AND employer_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("isssssssii",$category_id,$title,$description,$requirements,$salary_range,$location,$job_type,$deadline,$id,$employer_id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function DeleteJob($connection, $tablename, $id, $employer_id)
+{
+    $sql = "DELETE FROM ".$tablename." WHERE id=? AND employer_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("ii",$id,$employer_id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function GetJobStatus($connection, $tablename, $id, $employer_id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE id=? AND employer_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("ii",$id,$employer_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function ChangeJobStatus($connection, $tablename, $id, $employer_id, $status)
+{
+    $sql = "UPDATE ".$tablename." SET status=? WHERE id=? AND employer_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("sii",$status,$id,$employer_id);
+    $result = $statement->execute();
+    return $result;
+}
 }
 ?>
