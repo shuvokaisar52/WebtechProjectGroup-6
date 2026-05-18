@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 20px;
+    color: #333;
+}
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+a {
+    color: #3498db;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+table tr:first-child td {
+    background-color: #34495e;
+    color: #fff;
+    font-weight: bold;
+}
+form table {
+    width: 60%;
+    box-shadow: none;
+    background-color: transparent;
+}
+form table td {
+    border: none;
+    padding: 10px 5px;
+}
+form table tr:first-child td {
+    background-color: transparent;
+    color: #333;
+}
+input[type="text"], input[type="date"], textarea, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="submit"], input[type="button"] {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #27ae60;
+}

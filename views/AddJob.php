@@ -6,6 +6,9 @@ $types = array("Full-time", "Part-time", "Remote");
 ?>
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="css/employer.css">
+    </head>
     <body>
         <?php echo $error; ?>
         <form method='post' action='../controllers/JobController.php'>

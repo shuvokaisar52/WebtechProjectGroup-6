@@ -8,6 +8,7 @@ $username = $_SESSION["username"] ?? ($_SESSION["name"] ?? "");
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="css/employer.css">
         <script src='../controllers/js/ToggleStatus2.js'></script>
     </head>
     <body>

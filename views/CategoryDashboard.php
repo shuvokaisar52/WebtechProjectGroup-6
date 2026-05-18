@@ -7,6 +7,9 @@ $username = $_SESSION["username"] ?? ($_SESSION["name"] ?? "");
 ?>
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="css/employer.css">
+    </head>
     <body>
         <?php echo "Hello ".$username; ?>
         <br>
